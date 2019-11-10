@@ -1,7 +1,18 @@
 function verificar(event){
     event.target.style.color = "red";
     event.target.style.textDecoration = "line-through";
-    alert("Uau")
+    alert(event.target)
+    console.log(event.target.innerHTML)
+}
+
+
+function verificarAcerto(resposta){
+    for(let i = 0; i < separado.length; i++){
+        if(resposta == separado[i]){
+            underLine[i] = resposta;
+            i = separado.length;
+        }
+    }
 }
 
 let alfabetoFull = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
