@@ -9,11 +9,9 @@ function verificar(event){
         event.target.classList.add("select");
         verificarAcerto(eventClick);
         marcarEscolha()     
-
-        chances--;
     }
 
-    if(palavra == underLine){
+    if(palavra.toUpperCase() == underLine.toUpperCase()){
         alert(`Parabéns você acertou a palavra era ${palavra}`)
     }
 
@@ -29,17 +27,37 @@ function marcarEscolha(){
 
 function verificarAcerto(r){
     corAcerto = "red";
+
+    let acertou = false;
     for(let e = 0; e < separado.length; e++){
     
         if(r.toUpperCase() == separado[e].toUpperCase()){
             underLineArr[e] = r;
             corAcerto = "green";
-            e = separado.length;
+            acertou = true;
         }
     }
-    trocarLetras()
+
+    if(acertou == false){
+        chances--;
+        erros++
+        if(erros == 8){
+            alert("Você perdeu, tente novamente, para saber qual era a palavra click em qualquer letra que ainda não foi clicada")
+        }else{
+            trocarImg();
+        }
+    }else{
+        trocarLetras();
+    }
 }
 
+function trocarImg(){
+    let img = document.querySelector("img");
+
+    img.src = `img/0${erros}.png`;
+    
+    
+}
 
 function trocarLetras(){
     let underLineConvertida = "";
@@ -54,59 +72,23 @@ function trocarLetras(){
 }
 
 
-function escolherPalavra(){
-    let palavraDigitada = prompt("Insira uma palavra (sem acentos) para seu adversário adivinhar").toUpperCase();
-    let dicaDigitada = prompt("Insira uma dica para ajudar seu adversário").toUpperCase();
-
-    palavra = palavraDigitada;
-    dica = dicaDigitada;
-}
-
-function sortearPalavra(){
-    let palavras = ["Erick", "Pizza", "Felippe", "Professor", "Renata", "Amarelo", "Alex", "Feijão", "Alergia", "Azul", "Cachoro", "Catapora", "Faca", "Roxo", "Pintor", "Jumento", "Panela", "Arroz", "Laranja", "Camiseta", "Calca", "Azeitona", "Cenoura"]
-    let dicas = ["Nome", "Alimento", "Nome", "Profissão", "Nome", "Cor", "Nome", "Alimento", "Doença", "Cor", "Animal", "Doença", "Objeto", "Cor", "Profissão", "Animal", "Objeto", "Alimento", "Alimento", "Roupa", "Roupas", "Alimento", "Alimento"]
-
-    let radomNumber = Math.floor(Math.random() * 22);
-
-    palavra = palavras[radomNumber];
-    dica = dicas[radomNumber];
-}
-
-function separar(){
-    separado = palavra.split("");
-    chances = separado.length + 1;
-}
-
-function definirPalavra(){
-    let modo = confirm("Gostaria de sortear uma palavra? (Click em OK) Se estiver jogando com mais uma pessoa click em cancelar e peça que seu adversário insira uma palavra para você adivinhar")
-
-    if(modo = true){
-        sortearPalavra()
-    }else{
-        escolherPalavra()
-    }
-}
-
-
 // Vars
 
 let corAcerto = "red";
-let palavra;
-let dica;
+let palavra = prompt("Escolha uma palavra").toUpperCase();
+let dica = prompt("Dé uma dica sobre essa palavra").toUpperCase();
+let separado = palavra.split("");
 let underLine = "";
 let palavraForca = document.querySelector("#palavra");
 let alfabeto = document.querySelectorAll("#alfabeto div");
 let c = document.querySelector('#alfabeto div h4').value;
-
-let separado;
-let chances;
+let chances = 7;
+let erros = 1;
 
 let alfabetoFull = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
 
 //Algoritmo
-
-definirPalavra()
                            
     document.querySelector("#content-dica").innerHTML = `Dica: ${dica}`;
     document.querySelector("#content-tentativas").innerHTML = `${chances}`;
