@@ -71,12 +71,25 @@ function trocarLetras(){
         palavraForca.innerHTML = underLineConvertida;
 }
 
+function sortearPalavra(){
+    let palavras = ["Erick", "Pizza", "Felippe", "Professor", "Renata", "Amarelo", "Alex", "Feijão", "Alergia", "Azul", "Cachoro", "Catapora", "Faca", "Roxo", "Pintor", "Jumento", "Panela", "Arroz", "Laranja", "Camiseta", "Calca", "Azeitona", "Cenoura"]
+
+    return palavras[radomNumber];
+}
+
+function sortearDica(){
+    let dicas = ["Nome", "Alimento", "Nome", "Profissão", "Nome", "Cor", "Nome", "Alimento", "Doença", "Cor", "Animal", "Doença", "Objeto", "Cor", "Profissão", "Animal", "Objeto", "Alimento", "Alimento", "Roupa", "Roupas", "Alimento", "Alimento"]
+
+    return dicas[radomNumber];
+}
+
 
 // Vars
 
+let radomNumber = Math.floor(Math.random() * 22);
 let corAcerto = "red";
-let palavra = prompt("Escolha uma palavra").toUpperCase();
-let dica = prompt("Dé uma dica sobre essa palavra").toUpperCase();
+let palavra = sortearPalavra();
+let dica = sortearDica();
 let separado = palavra.split("");
 let underLine = "";
 let palavraForca = document.querySelector("#palavra");
