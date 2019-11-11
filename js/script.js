@@ -72,7 +72,7 @@ function trocarLetras(){
 }
 
 function sortearPalavra(){
-    let palavras = ["Erick", "Pizza", "Felippe", "Professor", "Renata", "Amarelo", "Alex", "Feijão", "Alergia", "Azul", "Cachoro", "Catapora", "Faca", "Roxo", "Pintor", "Jumento", "Panela", "Arroz", "Laranja", "Camiseta", "Calca", "Azeitona", "Cenoura"]
+    let palavras = ["Erick", "Pizza", "Felippe", "Professor", "Renata", "Amarelo", "Alex", "Feijão", "Alergia", "Azul", "Cachorro", "Catapora", "Faca", "Roxo", "Pintor", "Jumento", "Panela", "Arroz", "Laranja", "Camiseta", "Calca", "Azeitona", "Cenoura"]
 
     return palavras[radomNumber];
 }
